@@ -8,14 +8,10 @@
 import Config
 
 config :wikibase_restapi,
-  base_url: "https://www.wikidata.org/w/rest.php/wikibase/v1"
+  base_url: "https://www.wikidata.org/w/rest.php/wikibase"
 
 config :tesla, WikibaseRESTAPI.Connection,
-  base_url: "https://www.wikidata.org/w/rest.php/wikibase/v1",
-  adapter: {Tesla.Adapter.Hackney, [proxy: System.get_env("HTTP_PROXY")]}
-
-
-config :tesla, WikibaseRESTAPI.Connection,
+  adapter: {Tesla.Adapter.Hackney, [proxy: System.get_env("HTTP_PROXY")]},
   middleware: [
     {Tesla.Middleware.BearerAuth, token: System.get_env("WIKIDATA_CLIENT_TOKEN")}
   ]
