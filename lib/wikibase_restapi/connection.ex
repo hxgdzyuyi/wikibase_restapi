@@ -101,7 +101,6 @@ defmodule WikibaseRESTAPI.Connection do
       )
 
 
-
     [
       {Tesla.Middleware.BaseUrl, base_url},
       {Tesla.Middleware.Headers, [{"user-agent", user_agent}]},

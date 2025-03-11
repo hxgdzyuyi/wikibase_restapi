@@ -88,6 +88,7 @@ defmodule WikibaseRESTAPI.Api.Items do
       |> add_optional_params(optional_params, opts)
       |> Enum.into([])
 
+
     connection
     |> Connection.request(request)
     |> evaluate_response([

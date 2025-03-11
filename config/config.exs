@@ -7,7 +7,18 @@
 # General application configuration
 import Config
 
-config :wikibase_restapi, base_url: "https://wikibase.example/w/rest.php/wikibase"
+config :wikibase_restapi,
+  base_url: "https://www.wikidata.org/w/rest.php/wikibase/v1"
+
+config :tesla, WikibaseRESTAPI.Connection,
+  base_url: "https://www.wikidata.org/w/rest.php/wikibase/v1",
+  adapter: {Tesla.Adapter.Hackney, [proxy: System.get_env("HTTP_PROXY")]}
+
+
+config :tesla, WikibaseRESTAPI.Connection,
+  middleware: [
+    {Tesla.Middleware.BearerAuth, token: System.get_env("WIKIDATA_CLIENT_TOKEN")}
+  ]
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
